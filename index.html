@@ -3,150 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Эксклюзивные бонусы</title>
+    <title>ANAR • Официальный канал</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #030014;
         }
-
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            box-sizing: border-box;
+        /* 1) Замена неонового розового свечения на неоновый голубой цвет */
+        .neon-glow {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.25), 0 0 80px rgba(0, 240, 255, 0.15);
         }
-
-        .avatar {
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            object-fit: cover;
-            /* 1) Розовый неон заменен на неоновый голубой */
-            border: 2px solid #00f0ff;
-            box-shadow: 0 0 15px #00f0ff;
-            margin-bottom: 20px;
-        }
-
-        /* 2) Изменен текст и убраны смайлики */
-        .title {
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        .card {
-            background-color: #1c1c1e;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            /* 1) Розовый неон заменен на неоновый голубой */
-            border: 1px solid #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* 4) Смайлик медведя 🐻 и 5) LUCKYBEAR */
-        .brand {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 16px;
-        }
-
-        /* 6) Плашка поднята выше цифр */
-        .bonus-badge {
-            background-color: #2c2c2e;
-            color: #aeaeb2;
-            font-size: 12px;
-            padding: 4px 12px;
-            border-radius: 12px;
-            margin-bottom: 8px;
-            display: inline-block;
-        }
-
-        /* 5) Изменено значение бонуса */
-        .bonus-value {
-            font-size: 32px;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        /* 3) Текст кнопки изменен, смайлики оставлены */
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffffff;
-            color: #000000;
-            text-decoration: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 16px;
-            width: 100%;
-            box-sizing: border-box;
-            transition: background-color 0.2s;
-        }
-
-        .btn:active {
-            background-color: #e5e5ea;
-        }
-
-        .btn-icon {
-            margin: 0 8px;
-        }
-
-        /* 7) Измененный футер */
-        .footer-text {
-            font-size: 12px;
-            color: #8e8e93;
-            line-height: 1.5;
+        .text-neon {
+            color: #00f0ff;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
         }
     </style>
 </head>
-<body>
+<body class="text-slate-200 min-h-screen flex items-center justify-center p-4 relative overflow-x-hidden">
+    
+    <!-- Фоновые градиенты оригинального лендинга (перекрашены в неоновый голубой) -->
+    <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-900/10 blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-blue-950/20 blur-[120px] pointer-events-none"></div>
 
-    <div class="container">
-        <!-- 8) Аватарка изменена на твою (поддерживает и исходное имя, и avatar.jpg) -->
-        <img class="avatar" src="avatar.jpg" onerror="this.src='ЩАС ЧО.jpg'; this.onerror=null;" alt="Avatar">
-
-        <!-- 2) "Эксклюзивные бонусы" заменено на "ОФИЦИАЛЬНЫЙ КАНАЛ" без смайликов -->
-        <div class="title">ОФИЦИАЛЬНЫЙ КАНАЛ</div>
-
-        <div class="card">
-            <!-- 4) Смайлик медведя и 5) LUCKYBEAR -->
-            <div class="brand">🐻 LUCKYBEAR</div>
-            
-            <!-- 6) Приветственный бонус поднят НАД цифрами -->
-            <div class="bonus-badge">Приветственный бонус</div>
-            
-            <!-- 5) Значение заменено на 360% + 250 FS -->
-            <div class="bonus-value">360% + 250 FS</div>
-
-            <!-- 3) Текст заменен на "Перейти в TELEGRAM", смайлики на месте -->
-            <a href="https://t.me/+ССЫЛКА" class="btn">
-                <span class="btn-icon">✈️</span>
-                Перейти в TELEGRAM
-                <span class="btn-icon">🚀</span>
-            </a>
+    <div class="w-full max-w-[440px] z-10 flex flex-col items-center">
+        
+        <!-- 8) Аватарка в самом верху изменена на загруженную ava.jpg -->
+        <div class="relative group mb-6">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+            <img src="ava.jpg" alt="ANAR" class="relative w-24 h-24 rounded-full object-cover border-2 border-cyan-400/50 p-[2px] bg-slate-950">
         </div>
 
-        <!-- 7) Новый текст в футере -->
-        <div class="footer-text">
+        <!-- 2) "Эксклюзивные бонусы" заменено на "ОФИЦИАЛЬНЫЙ КАНАЛ", смайлики убраны -->
+        <h1 class="text-sm font-bold tracking-[0.2em] text-slate-400 uppercase mb-8 text-center">
+            ОФИЦИАЛЬНЫЙ КАНАЛ
+        </h1>
+
+        <!-- Основная карточка -->
+        <div class="w-full bg-slate-950/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-6 mb-6 neon-glow relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
+            
+            <div class="flex flex-col items-center text-center">
+                
+                <!-- 4) Смайлик огня изменен на 🐻 и 5) SPINTO заменено на LUCKYBEAR -->
+                <div class="flex items-center gap-2 mb-4 bg-slate-900/80 border border-slate-800 px-4 py-1.5 rounded-full">
+                    <span class="text-lg">🐻</span>
+                    <span class="text-sm font-extrabold tracking-wider text-white">LUCKYBEAR</span>
+                </div>
+
+                <!-- 6) Плашка "Приветственный бонус" поднята над числовыми значениями бонуса -->
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase mb-3 bg-cyan-950/30 border border-cyan-800/30 px-3 py-1 rounded-md">
+                    Приветственный бонус
+                </span>
+
+                <!-- 5) Значение бонуса заменено на 360% + 250 FS -->
+                <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 mb-6 tracking-tight">
+                    360% + 250 FS
+                </div>
+
+                <!-- 3) Текст кнопки изменен на "Перейти в TELEGRAM", оригинальные смайлики на месте -->
+                <a href="https://t.me/+ССЫЛКА_НА_КАНАЛ" class="w-full relative group/btn flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-950 font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg shadow-white/5 active:scale-[0.98]">
+                    <span class="text-lg">✈️</span>
+                    <span class="tracking-wide text-[15px]">Перейти в TELEGRAM</span>
+                    <span class="text-lg">🚀</span>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- 7) Текст в самом низу изменен на "ANAR • Доступ к каналу" -->
+        <p class="text-xs text-slate-500 font-medium tracking-wide text-center leading-relaxed">
             ANAR • Доступ к каналу
-        </div>
+        </p>
+
     </div>
 
 </body>
