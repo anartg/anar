@@ -4,80 +4,360 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANAR • Официальный канал</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #030014;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            position: relative;
+            overflow-x: hidden;
         }
-        /* 1) Замена неонового розового свечения на неоновый голубой цвет */
-        .neon-glow {
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.25), 0 0 80px rgba(0, 240, 255, 0.15);
+
+        .bg-glow-1 {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(6, 182, 212, 0.05);
+            filter: blur(120px);
+            pointer-events: none;
         }
-        .text-neon {
-            color: #00f0ff;
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+
+        .bg-glow-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(30, 58, 138, 0.2);
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 440px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 8) Аватарка в самом верху (ava.jpg) */
+        .avatar-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .avatar-container::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(to right, #22d3ee, #3b82f6);
+            border-radius: 50%;
+            filter: blur(4px);
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(34, 211, 238, 0.5);
+            padding: 2px;
+            background-color: #020617;
+            display: block;
+        }
+
+        /* 2) Изменен текст, смайлики убраны */
+        .title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: #94a3b8;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        /* Карточка */
+        .card {
+            width: 100%;
+            background-color: rgba(2, 6, 23, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(30, 41, 59, 0.8);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            /* 1) Замена неонового розового свечения на неоновый голубой */
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.15), 0 0 80px rgba(0, 240, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(6, 182, 212, 0.3), transparent);
+        }
+
+        /* 4) Смайлик огня изменен на 🐻 и 5) SPINTO заменено на LUCKYBEAR */
+        .brand-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid #1e293b;
+            padding: 6px 16px;
+            border-radius: 9999px;
+        }
+
+        .brand-icon {
+            font-size: 18px;
+        }
+
+        .brand-text {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+        }
+
+        /* 6) Плашка поднята НАД значениями бонуса */
+        .bonus-badge {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #22d3ee;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            background-color: rgba(8, 47, 73, 0.3);
+            border: 1px solid rgba(7, 89, 133, 0.3);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        /* 5) Значение бонуса заменено на 360% + 250 FS */
+        .bonus-value {
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            background: linear-gradient(to bottom, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 3) Текст первой кнопки изменен, смайлики оставлены */
+        .btn-tg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #020617;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.02em;
+            padding: 16px 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .btn-tg:hover { background-color: #f1f5f9; }
+        .btn-tg:active { transform: scale(0.98); }
+
+        /* Вторая кнопка (Перейти на сайт) */
+        .btn-site {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background-color: transparent;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 14px 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            border: 1px solid #1e293b;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+        }
+
+        .btn-site:hover {
+            background-color: rgba(30, 41, 59, 0.3);
+            color: #ffffff;
+            border-color: #334155;
+        }
+
+        /* Блок копирования промокода */
+        .promo-box {
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.5);
+            border: 1px dashed rgba(34, 211, 238, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .promo-box:hover {
+            border-color: rgba(34, 211, 238, 0.6);
+            background-color: rgba(15, 23, 42, 0.8);
+        }
+
+        .promo-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .promo-code-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .promo-text {
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+        }
+
+        .copy-icon {
+            width: 18px;
+            height: 18px;
+            fill: #22d3ee;
+        }
+
+        /* 7) Измененный футер */
+        .footer-text {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-align: center;
+            line-height: 1.625;
         }
     </style>
 </head>
-<body class="text-slate-200 min-h-screen flex items-center justify-center p-4 relative overflow-x-hidden">
+<body>
     
-    <!-- Фоновые градиенты оригинального лендинга (перекрашены в неоновый голубой) -->
-    <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-900/10 blur-[120px] pointer-events-none"></div>
-    <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-blue-950/20 blur-[120px] pointer-events-none"></div>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
 
-    <div class="w-full max-w-[440px] z-10 flex flex-col items-center">
+    <div class="wrapper">
         
-        <!-- 8) Аватарка в самом верху изменена на загруженную ava.jpg -->
-        <div class="relative group mb-6">
-            <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-            <img src="ava.jpg" alt="ANAR" class="relative w-24 h-24 rounded-full object-cover border-2 border-cyan-400/50 p-[2px] bg-slate-950">
+        <!-- 8) Аватарка (ava.jpg) -->
+        <div class="avatar-container">
+            <img src="ava.jpg" alt="ANAR" class="avatar">
         </div>
 
-        <!-- 2) "Эксклюзивные бонусы" заменено на "ОФИЦИАЛЬНЫЙ КАНАЛ", смайлики убраны -->
-        <h1 class="text-sm font-bold tracking-[0.2em] text-slate-400 uppercase mb-8 text-center">
-            ОФИЦИАЛЬНЫЙ КАНАЛ
-        </h1>
+        <!-- 2) Название без смайликов -->
+        <h1 class="title">ОФИЦИАЛЬНЫЙ КАНАЛ</h1>
 
-        <!-- Основная карточка -->
-        <div class="w-full bg-slate-950/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-6 mb-6 neon-glow relative overflow-hidden">
-            <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
+        <div class="card">
             
-            <div class="flex flex-col items-center text-center">
-                
-                <!-- 4) Смайлик огня изменен на 🐻 и 5) SPINTO заменено на LUCKYBEAR -->
-                <div class="flex items-center gap-2 mb-4 bg-slate-900/80 border border-slate-800 px-4 py-1.5 rounded-full">
-                    <span class="text-lg">🐻</span>
-                    <span class="text-sm font-extrabold tracking-wider text-white">LUCKYBEAR</span>
-                </div>
-
-                <!-- 6) Плашка "Приветственный бонус" поднята над числовыми значениями бонуса -->
-                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase mb-3 bg-cyan-950/30 border border-cyan-800/30 px-3 py-1 rounded-md">
-                    Приветственный бонус
-                </span>
-
-                <!-- 5) Значение бонуса заменено на 360% + 250 FS -->
-                <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 mb-6 tracking-tight">
-                    360% + 250 FS
-                </div>
-
-                <!-- 3) Текст кнопки изменен на "Перейти в TELEGRAM", оригинальные смайлики на месте -->
-                <a href="https://t.me/+ССЫЛКА_НА_КАНАЛ" class="w-full relative group/btn flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-950 font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg shadow-white/5 active:scale-[0.98]">
-                    <span class="text-lg">✈️</span>
-                    <span class="tracking-wide text-[15px]">Перейти в TELEGRAM</span>
-                    <span class="text-lg">🚀</span>
-                </a>
-
+            <!-- 4) Смайлик медведя и 5) LUCKYBEAR -->
+            <div class="brand-badge">
+                <span class="brand-icon">🐻</span>
+                <span class="brand-text">LUCKYBEAR</span>
             </div>
+
+            <!-- 6) Плашка поднята НАД цифрами -->
+            <span class="bonus-badge">Приветственный бонус</span>
+
+            <!-- 5) Измененное значение бонуса -->
+            <div class="bonus-value">360% + 250 FS</div>
+
+            <!-- 3) Текст кнопки изменен, оригинальные смайлики на месте -->
+            <a href="https://t.me/+ССЫЛКА_НА_ТГ" class="btn-tg">
+                <span style="font-size: 18px;">✈️</span>
+                <span>Перейти в TELEGRAM</span>
+                <span style="font-size: 18px;">🚀</span>
+            </a>
+
+            <!-- ВОССТАНОВЛЕНО: Кнопка перехода на сайт казино -->
+            <a href="https://ССЫЛКА_НА_КАЗИНО" class="btn-site">
+                <span>Перейти на сайт</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+
+            <!-- ВОССТАНОВЛЕНО: Блок скопировать промокод -->
+            <div class="promo-box" onclick="copyPromo()">
+                <div class="promo-label" id="promoLabel">Нажмите, чтобы скопировать промокод</div>
+                <div class="promo-code-row">
+                    <!-- Замени ANAR на свой промокод, если нужно -->
+                    <div class="promo-text" id="promoText">ANAR</div>
+                    <svg class="copy-icon" viewBox="0 0 24 24">
+                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                </div>
+            </div>
+
         </div>
 
-        <!-- 7) Текст в самом низу изменен на "ANAR • Доступ к каналу" -->
-        <p class="text-xs text-slate-500 font-medium tracking-wide text-center leading-relaxed">
+        <!-- 7) Футер измененный -->
+        <p class="footer-text">
             ANAR • Доступ к каналу
         </p>
 
     </div>
+
+    <!-- Скрипт для работы копирования промокода -->
+    <script>
+        function copyPromo() {
+            const promoText = document.getElementById('promoText').innerText;
+            navigator.clipboard.writeText(promoText).then(() => {
+                const label = document.getElementById('promoLabel');
+                label.innerText = 'Промокод скопирован!';
+                label.style.color = '#22d3ee';
+                setTimeout(() => {
+                    label.innerText = 'Нажмите, чтобы скопировать промокод';
+                    label.style.color = '#64748b';
+                }, 2000);
+            });
+        }
+    </script>
 
 </body>
 </html>
